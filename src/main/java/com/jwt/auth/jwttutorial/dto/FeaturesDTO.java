@@ -1,7 +1,5 @@
 package com.jwt.auth.jwttutorial.dto;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -11,16 +9,18 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OutletDTO {
+public class FeaturesDTO {
 	
-	
+
 	private String id;
+
+	@JsonProperty("outlet_id")
+	private String outlet;
 	
-	@JsonProperty("name")
-	private String name;
+	@JsonProperty("feature_name")
+	private String featureName;
 	
-	@JsonProperty("brand_name")
-	private String brandName;
-	
-	private List<FeaturesDTO> features;
-} 
+	private double cost;
+
+
+}

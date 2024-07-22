@@ -2,6 +2,7 @@ package com.jwt.auth.jwttutorial.controllers;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,13 +24,13 @@ public class OutletsController {
     }
 
     @PostMapping
-    public OutletDTO createNewOutlet(@RequestBody OutletDTO outlet) {
-    	return outletService.createNewOutlet(outlet);
+    public ResponseEntity<OutletDTO> createNewOutlet(@RequestBody OutletDTO outlet) {
+    	return ResponseEntity.ok(outletService.createNewOutlet(outlet)) ;
     }
 
     @GetMapping
-    public List<OutletDTO> exploreOutlets() {
-    	return outletService.exploreOutlets();
+    public ResponseEntity<List<OutletDTO>> exploreOutlets() {
+    	return ResponseEntity.ok(outletService.exploreOutlets());
     }
 
 }
