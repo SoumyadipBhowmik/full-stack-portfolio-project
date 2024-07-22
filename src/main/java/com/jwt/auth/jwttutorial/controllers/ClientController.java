@@ -1,5 +1,6 @@
 package com.jwt.auth.jwttutorial.controllers;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,13 +13,13 @@ import com.jwt.auth.jwttutorial.dto.ClientDTO;
 public class ClientController {
 
 	 @GetMapping
-	 public ClientDTO fetchClients() {
-	     return new ClientDTO("abcduuid", "Soumyadip Bhowmik", "7001392045", "Google");
+	 public ResponseEntity<ClientDTO> fetchClients() {
+	     return ResponseEntity.ok(new ClientDTO("abcduuid", "Soumyadip Bhowmik", "7001392045", "Google")) ;
 	 }
 
 	 @PostMapping
-	 public ClientDTO newClients() {
-		 return new ClientDTO("abcduuid1234", "Priyanka Gupta", "7001392045", "Google");
+	 public ResponseEntity<ClientDTO> newClients() {
+		 return ResponseEntity.ok( new ClientDTO("abcduuid1234", "Priyanka Gupta", "7001392045", "Google"));
 	 }
 
 }
