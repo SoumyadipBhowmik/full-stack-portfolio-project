@@ -1,7 +1,6 @@
 package com.jwt.auth.jwttutorial.services;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -27,7 +26,7 @@ public class OutletService {
 	}
 
 	public List<OutletDTO> exploreOutlets() {
-		return outletsRepository.findAll().stream().map(outlet -> mapper.map(outlet, OutletDTO.class)).collect(Collectors.toList());
+		return outletsRepository.findAll().stream().map(outlet -> mapper.map(outlet, OutletDTO.class)).toList();
 		
 	}
 
