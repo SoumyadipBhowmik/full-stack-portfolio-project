@@ -1,5 +1,7 @@
 package com.jwt.auth.jwttutorial.dto;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -10,15 +12,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LocationDTO {
+
+
+	private UUID id;
 	
-	@JsonProperty("location_id")
-	private String locationId;
 	@JsonProperty("address_line")
 	private String addressLine;
+	
 	@JsonProperty("postal_code")
 	private String postalCode;
+	
 	private String state;
-	@JsonProperty("country_code")
+	
+	@JsonProperty("country_name")
 	private String countryName;
 
 }

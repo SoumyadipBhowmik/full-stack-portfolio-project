@@ -4,8 +4,8 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.jwt.auth.jwttutorial.models.Outlet;
+import com.jwt.auth.jwttutorial.models.Features;
 
-public interface OutletsRepository extends JpaRepository<Outlet, UUID>{
+public interface FeatureRepository extends JpaRepository<Features, UUID>{
 
 }
