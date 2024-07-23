@@ -3,22 +3,24 @@ package com.jwt.auth.jwttutorial.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ClientDTO {
+public class FeaturesDTO {
+	
 
 	private String id;
-	@JsonProperty("client_name")
-	private String clientName;
-	@JsonProperty("phone_number")
-	private String phoneNumber;
-	@JsonProperty("provider")
-	private String provider;
+
+	@JsonProperty("outlet_id")
+	private OutletDTO outlet;
+	
+	@JsonProperty("feature_name")
+	private String featureName;
+	
+	private double cost;
+
+
 }
