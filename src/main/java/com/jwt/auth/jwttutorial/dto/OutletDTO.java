@@ -1,6 +1,6 @@
 package com.jwt.auth.jwttutorial.dto;
 
-import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,15 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OutletDTO {
-	
-	
-	private String id;
-	
-	@JsonProperty("name")
+
+
+	private UUID id;
+
 	private String name;
-	
+
 	@JsonProperty("brand_name")
 	private String brandName;
 	
-	private List<FeaturesDTO> features;
-} 
+
+	private LocationDTO location;
+
+}

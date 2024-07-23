@@ -14,12 +14,12 @@ import com.jwt.auth.jwttutorial.services.OutletService;
 
 @RestController
 @RequestMapping("/outlets")
-public class OutletsController {
+public class OutletController {
 
 	final OutletService outletService;
 
 
-    OutletsController(OutletService outletService) {
+    OutletController(OutletService outletService) {
         this.outletService = outletService;
     }
 
@@ -32,5 +32,6 @@ public class OutletsController {
     public ResponseEntity<List<OutletDTO>> exploreOutlets() {
     	return ResponseEntity.ok(outletService.exploreOutlets());
     }
+    
 
 }

@@ -15,7 +15,7 @@ public class FeaturesDTO {
 	private String id;
 
 	@JsonProperty("outlet_id")
-	private String outlet;
+	private OutletDTO outlet;
 	
 	@JsonProperty("feature_name")
 	private String featureName;
