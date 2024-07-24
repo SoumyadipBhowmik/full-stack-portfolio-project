@@ -4,23 +4,23 @@ Creating a Full Stack Open Source Project on Hair Dressing Web/Mobile Applicatio
 
 # Technologies Used
 
-## Front-End
+### Front-End
 
-ReactJS
-Flutter
+* ReactJS
+* Flutter
 
-## Back-End
+### Back-End
 
-Java
-Go
-Elixir
-Dart
+* Java
+* Go
+* Elixir
+* Dart
 
-## Database
+### Database
 
-POSTGRESQL
-Redis
+* POSTGRESQL
+* Redis
 
 ### Containerization
 
-Docker
+* Docker
