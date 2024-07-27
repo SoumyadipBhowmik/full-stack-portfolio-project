@@ -2,9 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"os"
 
 	"github.com/SoumyadipBhowmik/go-backend/driver"
+	"github.com/SoumyadipBhowmik/go-backend/route"
+	"github.com/SoumyadipBhowmik/go-backend/utils"
+	"github.com/gofiber/fiber/v2"
 )
 
 var ctx = context.Background()
@@ -14,13 +17,12 @@ func init() {
 }
 
 func main() {
+	app := fiber.New()
+	route.InitializeRoutes(app)
+	db := driver.ConnectToPostgresDB(ctx)
+	defer db.Close()
+	port := utils.Checkport(os.Getenv("PORT"))
+	err := app.Listen(":" + port)
+	utils.CommonErrorCheck(err)
 
-	conn := driver.ConnectToPostgresDB(ctx)
-	err := conn.Ping(ctx)
-	if err != nil {
-		fmt.Print("couldn't establish connection to database ", err)
-	} else {
-		fmt.Print("connection established")
-	}
-	defer conn.Close()
 }
