@@ -1,2 +1,2 @@
-lambda:
-	"Hello, Man"
+run:
+	go run main.go

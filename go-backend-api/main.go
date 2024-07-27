@@ -1,20 +1,26 @@
 package main
 
 import (
-	"github.com/SoumyadipBhowmik/gba-landing/drivers"
-	"github.com/gin-gonic/gin"
+	"context"
+	"fmt"
+
+	"github.com/SoumyadipBhowmik/go-backend/driver"
 )
 
+var ctx = context.Background()
+
 func init() {
-	drivers.LoadEnvVariables()
+	driver.LoadEnv()
 }
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run()
+
+	conn := driver.ConnectToPostgresDB(ctx)
+	err := conn.Ping(ctx)
+	if err != nil {
+		fmt.Print("couldn't establish connection to database ", err)
+	} else {
+		fmt.Print("connection established")
+	}
+	defer conn.Close()
 }
