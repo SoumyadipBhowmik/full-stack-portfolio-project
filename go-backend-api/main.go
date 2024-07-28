@@ -13,7 +13,7 @@ import (
 var ctx = context.Background()
 
 func init() {
-	driver.LoadEnv()
+	utils.LoadEnv()
 }
 
 func main() {
