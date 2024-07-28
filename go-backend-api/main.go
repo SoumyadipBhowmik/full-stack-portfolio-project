@@ -4,8 +4,8 @@ import (
 	"context"
 	"os"
 
-	"github.com/SoumyadipBhowmik/go-backend/driver"
-	"github.com/SoumyadipBhowmik/go-backend/route"
+	"github.com/SoumyadipBhowmik/go-backend/drivers"
+	"github.com/SoumyadipBhowmik/go-backend/routes"
 	"github.com/SoumyadipBhowmik/go-backend/utils"
 	"github.com/gofiber/fiber/v2"
 )
@@ -18,11 +18,10 @@ func init() {
 
 func main() {
 	app := fiber.New()
-	route.InitializeRoutes(app)
-	db := driver.ConnectToPostgresDB(ctx)
+	routes.InitializeRoutes(app)
+	db := drivers.ConnectToPostgresDB(ctx)
 	defer db.Close()
 	port := utils.Checkport(os.Getenv("PORT"))
 	err := app.Listen(":" + port)
 	utils.CommonErrorCheck(err)
-
 }
