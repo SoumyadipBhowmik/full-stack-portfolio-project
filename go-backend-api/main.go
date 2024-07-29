@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"os"
 
 	"github.com/SoumyadipBhowmik/go-backend/drivers"
@@ -18,10 +19,12 @@ func init() {
 
 func main() {
 	app := fiber.New()
-	routes.InitializeRoutes(app)
 	db := drivers.ConnectToPostgresDB(ctx)
+	routes.InitializeRoutes(app, db)
 	defer db.Close()
 	port := utils.Checkport(os.Getenv("PORT"))
 	err := app.Listen(":" + port)
-	utils.CommonErrorCheck(err)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
