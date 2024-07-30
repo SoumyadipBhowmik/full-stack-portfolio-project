@@ -18,7 +18,7 @@ func NewUserFeedBackRepository(database *pgxpool.Pool) *UserFeedbackRepository {
 	}
 }
 
-func (repo *UserFeedbackRepository) CreateNewFeedback(name, email, feedback string) error {
+func (repo *UserFeedbackRepository) CreateNewFeedback(name, email, feedback string) (uuid.UUID, error) {
 	query := `
 	INSERT INTO user_feedbacks (name, email, feedback)
 	VALUES ($1, $2, $3)
@@ -30,5 +30,5 @@ func (repo *UserFeedbackRepository) CreateNewFeedback(name, email, feedback stri
 		fmt.Println("The error is: ", err)
 	}
 	fmt.Println(id)
-	return nil
+	return id, nil
 }
