@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 
+	models "github.com/SoumyadipBhowmik/go-backend/models/dto"
 	"github.com/SoumyadipBhowmik/go-backend/services"
 	"github.com/gofiber/fiber/v2"
 )
@@ -16,10 +17,14 @@ func NewUserFeedbackController(service *services.UserFeedbackService) *UserFeedb
 }
 
 func (fc *UserFeedbackController) CreateNewFeedback(app *fiber.Ctx) error {
-	name := "Soumyadip"
-	email := "bhowmik.soumyadip9@gmail.com"
-	myfeedback := "truely a wonderful experience bruh"
-	feedback, err := fc.userService.CreateNewFeedback(name, email, myfeedback)
+
+	var user models.UserDTO
+
+	err := app.BodyParser(&user)
+	if err != nil {
+		return fiber.NewError(fiber.StatusBadRequest, "invalid body request")
+	}
+	feedback, err := fc.userService.CreateNewFeedback(user.Name, user.Email, user.Feedback)
 	if err != nil {
 		fmt.Println("error occured:", err)
 	}
