@@ -1,20 +1,18 @@
 package controllers
 
 import (
-	"github.com/SoumyadipBhowmik/go-backend/repositories"
+	"github.com/SoumyadipBhowmik/go-backend/services"
+	"github.com/gofiber/fiber/v2"
 )
 
 type ContributerController struct {
-	contributerRepo *repositories.ContributerRepostory
+	contributerService *services.ContributerServices
 }
 
-// func AddContributers(c *fiber.Ctx) error {
+func NewContributerController(contibuterService *services.ContributerServices) *ContributerController {
+	return &ContributerController{contributerService: contibuterService}
+}
 
-// 	// contributer := models.DevDTO
-// 	// err := c.BodyParser(card)
-// 	// if err != nil {
-// 		// c.Status(fiber.StatusBadRequest).SendString(err.Error())
-// 		// return err
-// 	}
-// 	// return c.Status(fiber.StatusOK).JSON(card)
-// }
+func (c *ContributerController) AddContributer(app *fiber.Ctx) {
+
+}
