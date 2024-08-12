@@ -1,6 +1,9 @@
 package controllers
 
 import (
+	"log"
+
+	"github.com/SoumyadipBhowmik/go-backend/models/dto"
 	"github.com/SoumyadipBhowmik/go-backend/services"
 	"github.com/gofiber/fiber/v2"
 )
@@ -13,6 +16,12 @@ func NewContributerController(contibuterService *services.ContributerServices) *
 	return &ContributerController{contributerService: contibuterService}
 }
 
-func (c *ContributerController) AddContributer(app *fiber.Ctx) {
-
+func (c *ContributerController) AddContributer(app *fiber.Ctx) error {
+	var contributor dto.DevDTO
+	err := app.BodyParser(&contributor)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	contribute := c.contributerService.AddContributor(contributor.Name, contributor.Role, contributor.Description, contributor.Github)
+	return app.JSON(contribute)
 }

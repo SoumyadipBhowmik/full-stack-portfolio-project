@@ -16,16 +16,15 @@ func NewUserFeedbackService(userFeedbackRepository *repositories.UserFeedbackRep
 	return &UserFeedbackService{userRepository: userFeedbackRepository}
 }
 
-func (uf *UserFeedbackService) CreateNewFeedback(name, email, feedback string) (uuid.UUID, error) {
+func (service *UserFeedbackService) CreateNewFeedback(name, email, feedback string) uuid.UUID {
 
-	id, err := uf.userRepository.CreateNewFeedback(name, email, feedback)
+	id, err := service.userRepository.CreateNewFeedback(name, email, feedback)
 	if err != nil {
 		fmt.Println(err)
 	}
 
 	var userid uuid.UUID
 	copier.Copy(&userid, id)
-
-	return userid, err
+	return userid
 
 }

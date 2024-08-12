@@ -1,6 +1,10 @@
-package models
+package db
 
-import "github.com/google/uuid"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Dev struct {
 	ID          uuid.UUID `db:"id"`
@@ -8,4 +12,6 @@ type Dev struct {
 	Role        string    `db:"role"`
 	Description string    `db:"description"`
 	Github      string    `db:"github"`
+	CreatedAt   time.Time `db:"created_at"`
+	UpdatedAt   time.Time `db:"created_at"`
 }

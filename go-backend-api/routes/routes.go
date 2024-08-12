@@ -9,9 +9,16 @@ import (
 )
 
 func InitializeRoutes(app *fiber.App, db *pgxpool.Pool) {
-	repo := repositories.NewUserFeedBackRepository(db)
-	service := services.NewUserFeedbackService(repo)
-	controller := controllers.NewUserFeedbackController(service)
+	feedbackRepo := repositories.NewUserFeedBackRepository(db)
+	feedbackService := services.NewUserFeedbackService(feedbackRepo)
+	feedbackController := controllers.NewUserFeedbackController(feedbackService)
 
-	initializeFeedbackRoutes(app, controller)
+	initializeFeedbackRoutes(app, feedbackController)
+
+	devRepo := repositories.NewContributerRepository(db)
+	devService := services.NewContributerServices(devRepo)
+	devController := controllers.NewContributerController(devService)
+
+	initializeDevRoutes(app, devController)
+
 }
