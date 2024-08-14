@@ -21,4 +21,10 @@ func InitializeRoutes(app *fiber.App, db *pgxpool.Pool) {
 
 	initializeDevRoutes(app, devController)
 
+	roadmapRepo := repositories.NewRoadMapRepository(db)
+	roadmapService := services.NewRoadMapService(roadmapRepo)
+	roadmapController := controllers.NewRoadMapController(roadmapService)
+
+	initializeRoadMapRoutes(app, roadmapController)
+
 }

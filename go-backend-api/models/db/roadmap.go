@@ -9,8 +9,8 @@ import (
 type RoadMap struct {
 	ID           uuid.UUID `db:"id"`
 	Name         string    `db:"name"`
-	Start        string    `db:"start"`
-	ExpectedTime string    `db:"expected_time"`
+	Start        time.Time `db:"start_time"`
+	ExpectedTime time.Time `db:"expected_end_date"`
 	Active       bool      `db:"active"`
 	LeadBy       string    `db:"lead_by"`
 	CreatedAt    time.Time `db:"created_at"`
