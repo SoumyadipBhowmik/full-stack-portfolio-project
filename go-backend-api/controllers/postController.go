@@ -36,3 +36,12 @@ func (controller *PostController) FetchPost(context *fiber.Ctx) error {
 func (controller *PostController) FetchAll(context *fiber.Ctx) error {
 	return context.JSON(controller.service.FetchAll())
 }
+
+func (controller *PostController) FetchUserPosts(context *fiber.Ctx) error {
+	var userId uuid.UUID
+	err := context.BodyParser(&userId)
+	if err != nil {
+		log.Fatalf("can't use body parser because: %v", err.Error())
+	}
+	return context.JSON(controller.service.FetchUserPosts(userId))
+}

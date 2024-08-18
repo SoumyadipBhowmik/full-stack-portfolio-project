@@ -44,3 +44,10 @@ func (service *PostServices) FetchAll() *[]dto.PostDTO {
 	copier.Copy(&postsDto, posts)
 	return &postsDto
 }
+
+func (service *PostServices) FetchUserPosts(userId uuid.UUID) *[]dto.PostDTO {
+	posts := service.repo.FetchUserPosts(userId)
+	var postsDto []dto.PostDTO
+	copier.Copy(&postsDto, posts)
+	return &postsDto
+}

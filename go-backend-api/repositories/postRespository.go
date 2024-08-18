@@ -100,3 +100,35 @@ func (repo *PostRepository) FetchAll() *[]db.Post {
 	}
 	return &posts
 }
+
+func (repo *PostRepository) FetchUserPosts(userId uuid.UUID) *[]db.Post {
+	query := `
+	SELECT * FROM post
+	WHERE user_id = $1
+	`
+	var posts []db.Post
+	rows, err := repo.Db.Query(context.Background(), query, userId)
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+	for rows.Next() {
+		var post db.Post
+		err := rows.Scan(
+			&post.Id,
+			&post.UserId,
+			&post.ImageUrl,
+			&post.Description,
+			&post.Reactions,
+			&post.CreatedAt,
+			&post.UpdatedAt,
+		)
+		if err != nil {
+			log.Fatalf("error scanning rows: %v", err.Error())
+		}
+		posts = append(posts, post)
+	}
+	if rows.Err() != nil {
+		log.Fatalf("there's a error in the rows: %v", err.Error())
+	}
+	return &posts
+}
