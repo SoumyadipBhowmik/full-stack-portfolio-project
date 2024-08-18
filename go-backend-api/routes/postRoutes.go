@@ -11,4 +11,5 @@ func initializePostRoutes(app *fiber.App, postController *controllers.PostContro
 	api.Post("", postController.CreatePost)
 	api.Get("", postController.FetchAll)
 	api.Get(":id", postController.FetchPost)
+	api.Get("users/:id", postController.FetchUserPosts)
 }
