@@ -105,6 +105,7 @@ func (repo *PostRepository) FetchUserPosts(userId uuid.UUID) *[]db.Post {
 	query := `
 	SELECT * FROM post
 	WHERE user_id = $1
+	LIMIT 4
 	`
 	var posts []db.Post
 	rows, err := repo.Db.Query(context.Background(), query, userId)
